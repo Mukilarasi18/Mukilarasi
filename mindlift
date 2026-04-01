@@ -1,0 +1,1236 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindLift – Your Daily Motivation</title>
+<!-- Google Fonts: Bebas Neue for big headings, Nunito for body text -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&displa
+y=swap" rel="stylesheet" />
+<style>
+/* =============================================
+GLOBAL RESET & VARIABLES
+============================================= */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--navy: #0a0f1e; /* dark background */
+--blue: #1e3a5f; /* medium blue */
+--orange: #ff6b35; /* main accent */
+--yellow: #ffd166; /* warm highlight */
+--white: #ffffff;
+--offwhite:#f4f6fb;
+--gray: #6b7280;
+--dark: #111827;
+--green: #22c55e;
+--red: #ef4444;
+}
+body {
+font-family: 'Nunito', sans-serif;
+overflow-x: hidden;
+}
+h1, h2, h3 {
+font-family: 'Bebas Neue', cursive;
+letter-spacing: 1.5px;
+
+}
+/* =============================================
+SCREEN SYSTEM — only .active screen shows
+============================================= */
+.screen {
+display: none;
+min-height: 100vh;
+}
+.screen.active {
+display: block;
+}
+/* =============================================
+SCREEN 1 — LANDING PAGE
+============================================= */
+#landing {
+background-color: var(--navy);
+position: relative;
+overflow: hidden;
+}
+/* Floating emoji particles in the background */
+.particles {
+position: absolute;
+inset: 0;
+pointer-events: none;
+overflow: hidden;
+}
+.particle {
+position: absolute;
+font-size: 28px;
+opacity: 0.12;
+animation: floatUp linear infinite;
+}
+/* Each particle gets a different position and speed */
+.particle:nth-child(1) { left: 5%; animation-duration: 9s; animation-delay: 0s; font-size: 24px; }
+.particle:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; font-size: 32px; }
+.particle:nth-child(3) { left: 25%; animation-duration: 8s; animation-delay: 1s; font-size: 20px; }
+.particle:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 3s; font-size: 28px; }
+.particle:nth-child(5) { left: 50%; animation-duration: 10s; animation-delay: 0.5s; font-size: 36px; }
+.particle:nth-child(6) { left: 62%; animation-duration: 11s; animation-delay: 4s; font-size: 22px; }
+.particle:nth-child(7) { left: 72%; animation-duration: 7s; animation-delay: 2.5s; font-size: 30px; }
+.particle:nth-child(8) { left: 82%; animation-duration: 13s; animation-delay: 1.5s; font-size: 26px; }
+.particle:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 3.5s; font-size: 24px; }
+.particle:nth-child(10) { left: 45%; animation-duration: 15s; animation-delay: 0s; font-size: 40px; }
+@keyframes floatUp {
+0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+10% { opacity: 0.12; }
+90% { opacity: 0.12; }
+100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+/* Orange diagonal stripe across the background */
+.landing-stripe {
+position: absolute;
+width: 120%;
+height: 320px;
+background: linear-gradient(135deg, var(--orange), #e05520);
+top: -80px;
+right: -10%;
+transform: rotate(-8deg);
+opacity: 0.08;
+border-radius: 40px;
+}
+/* Main content wrapper */
+.landing-content {
+position: relative;
+z-index: 10;
+max-width: 860px;
+margin: 0 auto;
+padding: 60px 24px 80px;
+text-align: center;
+
+}
+/* Top badge */
+.landing-badge {
+display: inline-block;
+background: rgba(255, 107, 53, 0.15);
+border: 1px solid rgba(255, 107, 53, 0.4);
+color: var(--orange);
+font-size: 12px;
+font-weight: 800;
+padding: 6px 20px;
+border-radius: 30px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 28px;
+animation: fadeDown 0.6s ease both;
+}
+/* Big hero headline */
+.landing-title {
+font-size: 88px;
+color: var(--white);
+line-height: 0.92;
+margin-bottom: 20px;
+animation: fadeDown 0.7s ease 0.1s both;
+}
+.landing-title .highlight {
+color: var(--orange);
+}
+.landing-title .thin {
+color: rgba(255,255,255,0.35);
+}
+/* Subtitle */
+.landing-sub {
+font-size: 18px;
+color: rgba(255,255,255,0.6);
+max-width: 520px;
+margin: 0 auto 48px;
+line-height: 1.7;
+font-weight: 600;
+animation: fadeDown 0.7s ease 0.2s both;
+}
+/* Feature pills row */
+.feature-row {
+display: flex;
+gap: 12px;
+justify-content: center;
+flex-wrap: wrap;
+margin-bottom: 48px;
+animation: fadeDown 0.7s ease 0.3s both;
+}
+.feature-pill {
+background: rgba(255,255,255,0.07);
+border: 1px solid rgba(255,255,255,0.12);
+color: rgba(255,255,255,0.75);
+font-size: 13px;
+font-weight: 700;
+padding: 8px 20px;
+border-radius: 30px;
+}
+.feature-pill span {
+margin-right: 6px;
+}
+/* CTA Button */
+.cta-btn {
+display: inline-block;
+background: var(--orange);
+color: var(--white);
+font-family: 'Nunito', sans-serif;
+font-size: 18px;
+font-weight: 900;
+
+padding: 18px 52px;
+border-radius: 16px;
+border: none;
+cursor: pointer;
+letter-spacing: 0.5px;
+transition: transform 0.2s, box-shadow 0.2s;
+box-shadow: 0 8px 32px rgba(255, 107, 53, 0.45);
+animation: fadeDown 0.7s ease 0.4s both;
+}
+.cta-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 14px 40px rgba(255, 107, 53, 0.55);
+}
+.cta-btn:active {
+transform: translateY(0px);
+}
+/* Scroll arrow hint */
+.scroll-hint {
+margin-top: 60px;
+color: rgba(255,255,255,0.25);
+font-size: 13px;
+font-weight: 700;
+animation: fadeDown 0.7s ease 0.6s both;
+}
+/* Preview cards row at the bottom of landing */
+.preview-row {
+display: flex;
+gap: 16px;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 20px;
+animation: fadeDown 0.7s ease 0.5s both;
+}
+.preview-card {
+background: rgba(255,255,255,0.05);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: 18px;
+padding: 22px 28px;
+text-align: center;
+min-width: 150px;
+}
+.preview-card .pnum {
+font-family: 'Bebas Neue', cursive;
+font-size: 44px;
+color: var(--orange);
+line-height: 1;
+}
+.preview-card .plabel {
+font-size: 12px;
+color: rgba(255,255,255,0.5);
+font-weight: 700;
+margin-top: 4px;
+}
+/* =============================================
+SCREEN 2 — ONBOARDING
+============================================= */
+#onboarding {
+background: linear-gradient(135deg, #f4f6fb 0%, #e8ecf5 100%);
+padding: 40px 20px;
+}
+/* Flex centering wrapper INSIDE onboarding screen */
+.onboarding-inner {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: calc(100vh - 80px);
+}
+.onboard-card {
+background: var(--white);
+
+border-radius: 28px;
+padding: 48px 44px;
+width: 100%;
+max-width: 480px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+animation: popIn 0.4s ease both;
+}
+/* Small logo at top */
+.onboard-logo {
+font-family: 'Bebas Neue', cursive;
+font-size: 28px;
+color: var(--navy);
+margin-bottom: 28px;
+}
+.onboard-logo span { color: var(--orange); }
+.onboard-card h2 {
+font-size: 38px;
+color: var(--navy);
+margin-bottom: 6px;
+}
+.onboard-card p {
+font-size: 14px;
+color: var(--gray);
+margin-bottom: 30px;
+line-height: 1.6;
+}
+/* Input field label */
+.field-label {
+font-size: 12px;
+font-weight: 800;
+color: var(--navy);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 7px;
+display: block;
+}
+/* Text inputs */
+.onboard-card input,
+.onboard-card select {
+width: 100%;
+padding: 13px 16px;
+border: 2px solid #e5e7eb;
+border-radius: 12px;
+font-family: 'Nunito', sans-serif;
+font-size: 15px;
+font-weight: 600;
+outline: none;
+transition: border-color 0.2s;
+margin-bottom: 20px;
+color: var(--dark);
+background: var(--white);
+}
+.onboard-card input:focus,
+.onboard-card select:focus {
+border-color: var(--orange);
+}
+.onboard-card input::placeholder {
+color: #bbb;
+}
+/* Enter button */
+.enter-btn {
+width: 100%;
+padding: 15px;
+background: var(--navy);
+color: var(--white);
+font-family: 'Nunito', sans-serif;
+font-size: 16px;
+font-weight: 900;
+border: none;
+
+border-radius: 14px;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s;
+letter-spacing: 0.5px;
+}
+.enter-btn:hover {
+background: var(--orange);
+transform: translateY(-2px);
+}
+/* Error message */
+.error-msg {
+color: var(--red);
+font-size: 13px;
+font-weight: 700;
+margin-top: -14px;
+margin-bottom: 14px;
+display: none;
+}
+/* =============================================
+SCREEN 3 — MAIN APP
+============================================= */
+#mainapp {
+background: var(--offwhite);
+}
+/* Top bar */
+.app-topbar {
+background: var(--navy);
+padding: 0 24px;
+height: 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.app-logo {
+font-family: 'Bebas Neue', cursive;
+font-size: 24px;
+color: var(--orange);
+}
+.app-logo span { color: var(--white); }
+.app-user {
+font-size: 13px;
+font-weight: 800;
+color: rgba(255,255,255,0.7);
+}
+.app-user strong { color: var(--yellow); }
+/* Streak badge */
+.streak-badge {
+display: flex;
+align-items: center;
+gap: 5px;
+background: rgba(255,209,102,0.12);
+border: 1px solid rgba(255,209,102,0.3);
+border-radius: 20px;
+padding: 4px 12px;
+font-size: 12px;
+font-weight: 800;
+color: var(--yellow);
+letter-spacing: 0.3px;
+}
+.streak-fire {
+font-size: 14px;
+display: inline-block;
+animation: fireAnim 0.8s ease-in-out infinite alternate;
+}
+@keyframes fireAnim {
+from { transform: scale(1); }
+to { transform: scale(1.22); }
+}
+/* Main content wrapper */
+
+.app-content {
+max-width: 700px;
+margin: 0 auto;
+padding: 36px 20px 60px;
+}
+/* Greeting */
+.greeting {
+font-size: 13px;
+font-weight: 800;
+color: var(--gray);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+.greeting-name {
+font-size: 34px;
+color: var(--navy);
+margin-bottom: 4px;
+}
+.greeting-sub {
+font-size: 14px;
+color: var(--gray);
+margin-bottom: 32px;
+}
+/* ---- MOOD SECTION ---- */
+.mood-heading {
+font-size: 20px;
+font-weight: 800;
+color: var(--navy);
+margin-bottom: 16px;
+}
+.mood-grid {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+margin-bottom: 36px;
+}
+.mood-btn {
+flex: 1;
+min-width: 100px;
+background: var(--white);
+border: 2px solid #e5e7eb;
+border-radius: 18px;
+padding: 18px 10px;
+cursor: pointer;
+text-align: center;
+transition: all 0.2s;
+font-family: 'Nunito', sans-serif;
+}
+.mood-btn:hover {
+border-color: var(--orange);
+transform: translateY(-4px);
+box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.mood-btn.selected {
+border-color: var(--orange);
+background: #fff5f0;
+transform: translateY(-4px);
+box-shadow: 0 8px 24px rgba(255,107,53,0.2);
+}
+.mood-emoji { font-size: 36px; display: block; margin-bottom: 8px; }
+.mood-label { font-size: 13px; font-weight: 800; color: var(--navy); }
+/* ---- QUOTE SECTION ---- */
+/* Hidden by default — shown after mood is picked */
+#quoteSection {
+display: none;
+}
+/* The big quote card */
+.quote-card {
+
+background: var(--navy);
+border-radius: 24px;
+padding: 40px 36px;
+color: var(--white);
+position: relative;
+overflow: hidden;
+margin-bottom: 16px;
+box-shadow: 0 12px 40px rgba(10,15,30,0.3);
+animation: fadeIn 0.5s ease both;
+}
+/* Decorative big quotation mark */
+.quote-card::before {
+content: '"';
+font-family: 'Bebas Neue', cursive;
+font-size: 220px;
+color: rgba(255,255,255,0.04);
+position: absolute;
+top: -50px;
+left: 10px;
+line-height: 1;
+pointer-events: none;
+}
+/* Mood colour strip at top */
+.quote-mood-strip {
+height: 5px;
+border-radius: 4px;
+margin-bottom: 28px;
+background: linear-gradient(90deg, var(--orange), var(--yellow));
+}
+.quote-text {
+font-size: 22px;
+font-weight: 800;
+line-height: 1.55;
+color: var(--white);
+margin-bottom: 20px;
+position: relative;
+}
+.quote-author {
+font-size: 13px;
+font-weight: 700;
+color: var(--yellow);
+letter-spacing: 0.5px;
+}
+.quote-mood-tag {
+display: inline-block;
+background: rgba(255,255,255,0.1);
+color: rgba(255,255,255,0.7);
+font-size: 11px;
+font-weight: 800;
+padding: 4px 14px;
+border-radius: 20px;
+margin-top: 14px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+/* ---- LANGUAGE SWITCHER ---- */
+.lang-label {
+font-size: 12px;
+font-weight: 800;
+color: var(--gray);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
+.lang-tabs {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+margin-bottom: 24px;
+
+}
+.lang-tab {
+padding: 8px 20px;
+border-radius: 30px;
+border: 2px solid #ddd;
+background: var(--white);
+font-family: 'Nunito', sans-serif;
+font-size: 13px;
+font-weight: 800;
+cursor: pointer;
+transition: all 0.2s;
+color: var(--navy);
+}
+.lang-tab:hover {
+border-color: var(--navy);
+}
+.lang-tab.active {
+background: var(--navy);
+color: var(--white);
+border-color: var(--navy);
+}
+/* ---- LIKE / DISLIKE ---- */
+.reactions {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 24px;
+}
+.react-btn {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 12px 24px;
+border-radius: 50px;
+border: 2px solid #e5e7eb;
+background: var(--white);
+font-family: 'Nunito', sans-serif;
+font-size: 14px;
+font-weight: 800;
+cursor: pointer;
+transition: all 0.2s;
+color: var(--dark);
+}
+.react-btn:hover {
+transform: scale(1.05);
+}
+.react-btn.liked {
+background: #fff0f0;
+border-color: var(--red);
+color: var(--red);
+}
+.react-btn.disliked {
+background: #f0f0ff;
+border-color: #6366f1;
+color: #6366f1;
+}
+.react-btn .react-emoji { font-size: 20px; }
+/* ---- NEW QUOTE BUTTON ---- */
+.new-quote-btn {
+width: 100%;
+padding: 15px;
+background: var(--orange);
+color: var(--white);
+font-family: 'Nunito', sans-serif;
+font-size: 15px;
+font-weight: 900;
+border: none;
+border-radius: 14px;
+cursor: pointer;
+
+transition: transform 0.15s, box-shadow 0.15s;
+letter-spacing: 0.5px;
+}
+.new-quote-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 28px rgba(255,107,53,0.35);
+}
+/* Tip below new quote button */
+.tip-text {
+text-align: center;
+font-size: 12px;
+color: var(--gray);
+margin-top: 10px;
+font-weight: 700;
+}
+/* =============================================
+SHARED ANIMATIONS
+============================================= */
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(16px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+from { opacity: 0; transform: scale(0.88); }
+to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.08); }
+}
+.pulse { animation: pulse 0.3s ease; }
+/* =============================================
+RESPONSIVE — small screens
+============================================= */
+@media (max-width: 500px) {
+.landing-title { font-size: 58px; }
+.onboard-card { padding: 32px 24px; }
+.quote-text { font-size: 18px; }
+.mood-btn { min-width: 80px; }
+}
+</style>
+</head>
+<body>
+<!-- ================================================
+SCREEN 1 — LANDING PAGE
+================================================ -->
+<div class="screen active" id="landing">
+<!-- Floating emoji particles in the background -->
+<div class="particles">
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">■</div>
+<div class="particle">❤■</div>
+</div>
+<!-- Decorative stripe -->
+<div class="landing-stripe"></div>
+<!-- Main landing content -->
+<div class="landing-content">
+<div class="landing-badge">✦ Free · No Sign-up · Just Motivation</div>
+
+<h1 class="landing-title">
+LIFT<br>
+<span class="highlight">YOUR</span><br>
+<span class="thin">MIND</span>
+</h1>
+<p class="landing-sub">
+Pick your mood. Get a surprise quote made for how you feel.
+In your own language. Every single day.
+</p>
+<!-- Feature pills -->
+<div class="feature-row">
+<div class="feature-pill"><span>■</span> Mood-Based Quotes</div>
+<div class="feature-pill"><span>■</span> 4 Languages</div>
+<div class="feature-pill"><span>■</span> Daily Surprise</div>
+<div class="feature-pill"><span>■</span> Like &amp; Dislike</div>
+</div>
+<!-- Main CTA button -->
+<button class="cta-btn" onclick="goToOnboarding()">
+Get Started &rarr;
+</button>
+<!-- Stats row -->
+<div class="preview-row">
+<div class="preview-card">
+<div class="pnum">20+</div>
+<div class="plabel">Quotes</div>
+</div>
+<div class="preview-card">
+<div class="pnum">5</div>
+<div class="plabel">Moods</div>
+</div>
+<div class="preview-card">
+<div class="pnum">4</div>
+<div class="plabel">Languages</div>
+</div>
+<div class="preview-card">
+<div class="pnum">∞</div>
+<div class="plabel">Motivation</div>
+</div>
+</div>
+<div class="scroll-hint">100% free · Made for you</div>
+</div>
+</div><!-- end #landing -->
+<!-- ================================================
+SCREEN 2 — ONBOARDING (Name + Profession)
+================================================ -->
+<div class="screen" id="onboarding">
+<div class="onboarding-inner">
+<div class="onboard-card">
+<div class="onboard-logo">Mind<span>Lift</span></div>
+<h2>Hey There! ■</h2>
+<p>Tell us a little about yourself so we can personalise your experience.</p>
+<!-- Name field -->
+<label class="field-label" for="nameInput">Your Name</label>
+<input
+type="text"
+id="nameInput"
+placeholder="e.g. Harini"
+maxlength="30"
+/>
+<div class="error-msg" id="nameError">Please enter your name!</div>
+<!-- Profession field -->
+<label class="field-label" for="profSelect">Your Profession</label>
+<select id="profSelect">
+<option value="">Select your profession...</option>
+<option value="Student">■ Student</option>
+<option value="Developer">■ Developer</option>
+<option value="Designer">■ Designer</option>
+<option value="Teacher">■■■ Teacher</option>
+<option value="Athlete">■ Athlete</option>
+
+<option value="Entrepreneur">■ Entrepreneur</option>
+<option value="Artist">■ Artist</option>
+<option value="Other">■ Other</option>
+</select>
+<div class="error-msg" id="profError">Please select your profession!</div>
+<!-- Enter button -->
+<button class="enter-btn" onclick="goToApp()">
+Enter MindLift ■
+</button>
+</div>
+</div><!-- end onboarding-inner -->
+</div><!-- end #onboarding -->
+<!-- ================================================
+SCREEN 3 — MAIN APP
+================================================ -->
+<div class="screen" id="mainapp">
+<!-- Top navigation bar -->
+<div class="app-topbar">
+<div class="app-logo">Mind<span>Lift</span></div>
+<div class="streak-badge">
+<span class="streak-fire">■</span>
+<span id="streakCount">1</span>&nbsp;Day Streak
+</div>
+<div class="app-user">Hello, <strong id="topbarName">—</strong> ■</div>
+</div>
+<!-- App body -->
+<div class="app-content">
+<!-- Greeting message -->
+<div class="greeting">Good Day</div>
+<h2 class="greeting-name" id="greetingName">Welcome!</h2>
+<p class="greeting-sub" id="greetingSub">Your daily motivation is waiting — pick your mood first.</p>
+<!-- ■■ MOOD PICKER ■■ -->
+<div class="mood-heading">How are you feeling today?</div>
+<div class="mood-grid">
+<button class="mood-btn" id="mood-sad" onclick="selectMood('sad')">
+<span class="mood-emoji">■</span>
+<span class="mood-label">Sad</span>
+</button>
+<button class="mood-btn" id="mood-angry" onclick="selectMood('angry')">
+<span class="mood-emoji">■</span>
+<span class="mood-label">Angry</span>
+</button>
+<button class="mood-btn" id="mood-tired" onclick="selectMood('tired')">
+<span class="mood-emoji">■</span>
+<span class="mood-label">Tired</span>
+</button>
+<button class="mood-btn" id="mood-happy" onclick="selectMood('happy')">
+<span class="mood-emoji">■</span>
+<span class="mood-label">Happy</span>
+</button>
+<button class="mood-btn" id="mood-motivated" onclick="selectMood('motivated')">
+<span class="mood-emoji">■</span>
+<span class="mood-label">Motivated</span>
+</button>
+</div>
+<!-- ■■ QUOTE SECTION (hidden until mood is picked) ■■ -->
+<div id="quoteSection">
+<!-- The quote card -->
+<div class="quote-card" id="quoteCard">
+<div class="quote-mood-strip"></div>
+<div class="quote-text" id="quoteText">Loading...</div>
+<div class="quote-author" id="quoteAuthor">— Author</div>
+<div class="quote-mood-tag" id="quoteMoodTag">Mood</div>
+</div>
+<!-- Language switcher -->
+<div class="lang-label">■ Change Language</div>
+<div class="lang-tabs">
+<button class="lang-tab active" onclick="switchLang('en', this)">English</button>
+<button class="lang-tab" onclick="switchLang('ta', this)">Tamil</button>
+
+<button class="lang-tab" onclick="switchLang('hi', this)">Hindi</button>
+<button class="lang-tab" onclick="switchLang('te', this)">Telugu</button>
+</div>
+<!-- Like / Dislike buttons -->
+<div class="reactions">
+<button class="react-btn" id="likeBtn" onclick="react('like')">
+<span class="react-emoji">■</span>
+<span id="likeCount">0</span>
+</button>
+<button class="react-btn" id="dislikeBtn" onclick="react('dislike')">
+<span class="react-emoji">■</span>
+<span id="dislikeCount">0</span>
+</button>
+</div>
+<!-- New quote button -->
+<button class="new-quote-btn" onclick="newQuote()">
+■ Surprise Me Again
+</button>
+<div class="tip-text">New quote based on your current mood</div>
+</div><!-- end #quoteSection -->
+</div><!-- end .app-content -->
+</div><!-- end #mainapp -->
+<!-- ================================================
+JAVASCRIPT
+================================================ -->
+<script>
+/* ============================================
+QUOTE DATA
+Each mood has 4 quotes.
+Each quote has translations in 4 languages.
+Structure: QUOTES[mood] = [ { en, ta, hi, te, author }, ... ]
+============================================ */
+const QUOTES = {
+sad: [
+{
+en: "Every storm runs out of rain. Hold on — calmer days are coming.",
+ta: "■■■■■■■ ■■■■■■■ ■■■ ■■■■ ■■■■■■. ■■■■■■■■ ■■■■■■■ ■■■■■.",
+hi: "■■ ■■■■■ ■■ ■■■■■ ■■ ■■■ ■■■■ ■■■■ ■■■ ■■■■ ■■■ ■■■ ■■■■ ■■■■",
+te: "■■■■■ ■■■■■■ ■■■■■ ■■■■■■ ■■■■■■■■■. ■■■■■■■■■■ ■■■■■■ ■■■■■■■.",
+author: "Unknown"
+},
+{
+en: "Tough times never last, but tough people do.",
+ta: "■■■■■■■ ■■■■■■■■ ■■■■■■■■■■ — ■■■■■ ■■■■■■■ ■■■■■■■■■ ■■■■■■■■■■■■■.",
+hi: "■■■■■■■ ■■■■ ■■■ ■■■■ ■■■■■, ■■■■■ ■■■■■ ■■■ ■■■■■ ■■■■",
+te: "■■■■■■■ ■■■■■■ ■■■■■■■■ ■■■■■, ■■■■ ■■■■■■■ ■■■■■■■■■ ■■■■■■.",
+author: "Robert H. Schuller"
+},
+{
+en: "You are stronger than you think, and braver than you believe.",
+ta: "■■■■■■■ ■■■■■■■■■ ■■■ ■■■■■■■■■■■, ■■■■■■■■ ■■■ ■■■■■■■■■■■.",
+hi: "■■ ■■■■■ ■■■ ■■■■ ■■■■■■■ ■■■■■ ■■■, ■■ ■■■■■ ■■■ ■■■■ ■■■■■■■ ■■■■■■■",
+te: "■■■■ ■■■■■■■■■■■■■■■■ ■■■■■, ■■■■■■ ■■■■■■■■ ■■■■■■■■ ■■■■■■■.",
+author: "A.A. Milne"
+},
+{
+en: "It's okay to not be okay — just don't stay there.",
+ta: "■■■■■■■■■■■■ ■■■■■■■■ ■■■■■■■■ — ■■■■■ ■■■■■■■ ■■■■■■■■■■■■.",
+hi: "■■■ ■ ■■■■ ■■■ ■■ — ■■ ■■■■ ■■■■ ■■■",
+te: "■■■■■■■■■■■■ ■■■■■■■■■ — ■■■■ ■■■■■■ ■■■■■■■■■■.",
+author: "Unknown"
+}
+],
+angry: [
+{
+en: "For every minute you are angry, you lose sixty seconds of happiness.",
+ta: "■■■■■■■ ■■■■■■ ■■■■■■■■■ ■■■■■■■ ■■■■■■■■■, ■■■■■■ ■■■■■■■■■ ■■■■■■■■■■■
+■■■■■■■■■■■■■.",
+hi: "■■■■■ ■■■ ■■ ■■■■■■ ■■■ ■■■■ ■■■, ■■■■ ■■■ ■■ ■■■■ ■■ ■■■■ ■■■■",
+
+te: "■■■■ ■■■■■■ ■■■■ ■■■■■ ■■■■■■, ■■■■ ■■■■■■ ■■■■■■■■■■ ■■■■■■■■■■.",
+author: "Ralph Waldo Emerson"
+},
+{
+en: "Take a breath. You have survived everything so far — this too shall pass.",
+ta: "■■ ■■■■■■ ■■■■■■■■■. ■■■■■■■■■■ ■■■■■■■■■■ ■■■■■■ — ■■■ ■■■■ ■■■■■■■■■■■■.",
+hi: "■■ ■■■■ ■■■■ ■■ ■■ ■■ ■■ ■■■ ■■■ ■■ ■■■■ ■■■ — ■■ ■■ ■■■■ ■■■■■■",
+te: "■■■■ ■■■■■ ■■■■■■■■■. ■■■■ ■■■■■■■■■■ ■■■■■■■■■■ ■■■■■■ — ■■■ ■■■■ ■■■■■■■■■■■■.",
+author: "Unknown"
+},
+{
+en: "In the middle of every difficulty lies an opportunity.",
+ta: "■■■■■■■ ■■■■■■■■■■ ■■■■■■■■■ ■■■ ■■■■■■■■ ■■■■■■■■■■.",
+hi: "■■ ■■■■■■■ ■■ ■■■ ■■■ ■■ ■■■■ ■■■■ ■■■■ ■■■",
+te: "■■■■■ ■■■■■ ■■■■■■ ■■ ■■■■■■ ■■■■ ■■■■■■■.",
+author: "Albert Einstein"
+},
+{
+en: "You cannot control what happens to you, but you can control how you respond.",
+ta: "■■■■■■■■■■ ■■■■ ■■■■■■■■■ ■■■■■ ■■■■■■■■■■■■■ ■■■■■■■■, ■■■■■ ■■■■■■
+■■■■■■■■■■■■■■■■■■■ ■■■■■ ■■■■■■■■■■■■■■■■■.",
+hi: "■■ ■■■■ ■■ ■■ ■■■■ ■■■■ ■■■■ ■■, ■■■■■ ■■■■ ■■■■■■■■■■■ ■■■■ ■■ ■■ ■■■■ ■■■■",
+te: "■■■■ ■■■ ■■■■■■■■■■ ■■■■■■■■■■■■■■, ■■■■ ■■■■ ■■■ ■■■■■■■■■■■■ ■■■■■■■■■■■■■■■.",
+author: "Viktor Frankl"
+}
+],
+tired: [
+{
+en: "Rest if you must, but don't you quit.",
+ta: "■■■■■■■■■■■■■ ■■■■■■■■■■■■, ■■■■■ ■■■■■■■■■■■■■■■■■.",
+hi: "■■■■■■ ■■ ■■ ■■■■ ■■■■, ■■■■■ ■■■ ■■ ■■■■■■",
+te: "■■■■■■■■ ■■■■■■■■■■■■, ■■■■ ■■■■■■■■■■■■■■.",
+author: "Edgar A. Guest"
+},
+{
+en: "Small progress is still progress. You are doing better than you think.",
+ta: "■■■■■ ■■■■■■■■■■■■■ ■■■■■■■■■■■. ■■■■■■■ ■■■■■■■■■ ■■■ ■■■■■■ ■■■■■■■■■■■■■.",
+hi: "■■■■■ ■■■■■■ ■■ ■■■■■■ ■■■ ■■ ■■■■■ ■■■ ■■■■ ■■■■■ ■■ ■■■ ■■■■",
+te: "■■■■■ ■■■■■■■ ■■■■ ■■■■■■■. ■■■■ ■■■■■■■■■■■■■■■■ ■■■■ ■■■■■■■■■■■■.",
+author: "Unknown"
+},
+{
+en: "Your current situation is not your final destination.",
+ta: "■■■■■■ ■■■■■■■■ ■■■■ ■■■■■■ ■■■■■ ■■■■■■ ■■■■.",
+hi: "■■■■ ■■■■■■ ■■■■■■ ■■■■ ■■■■■ ■■■■■ ■■■■ ■■■",
+te: "■■ ■■■■■■■■ ■■■■■■■■■ ■■ ■■■■■ ■■■■■ ■■■■.",
+author: "Unknown"
+},
+{
+en: "Even the darkest night will end, and the sun will rise.",
+ta: "■■■■■■■■■■■■ ■■■■■■ ■■■■■■ ■■■■■■■■ — ■■■■■■■ ■■■■■■■■■.",
+hi: "■■■■ ■■■■■■ ■■■ ■■ ■■■■ ■■■■ ■■, ■■ ■■■■ ■■■■ ■■■",
+te: "■■■■■ ■■■■■■ ■■■■ ■■■■■■■■■■■, ■■■■■■■■ ■■■■■■■■■■.",
+author: "Victor Hugo"
+}
+],
+happy: [
+{
+en: "Your positive energy is contagious. Keep spreading it wherever you go.",
+ta: "■■■■■■ ■■■■■■■ ■■■■■■ ■■■■■■■■■■■■■■. ■■■■■ ■■■■■■■■■■ ■■■■■■ ■■■■■■■■■.",
+hi: "■■■■ ■■■■■■■■■ ■■■■■ ■■■■■■■■ ■■■ ■■■■ ■■ ■■■■, ■■■ ■■■■■■ ■■■■■",
+te: "■■ ■■■■■■■ ■■■■■ ■■■■■■■■■■ ■■■■■■. ■■■■■■■ ■■■■■■■■■ ■■■■■■ ■■■■■■■■■■■■■■.",
+author: "Unknown"
+},
+{
+en: "Happiness is not something ready made. It comes from your own actions.",
+ta: "■■■■■■■■■ ■■■■■■ ■■■■■■ ■■■■■■■■■■■; ■■■ ■■■■■■ ■■■■■■■■■■■■■■■■ ■■■■■■■■.",
+hi: "■■■■ ■■■ ■■■■ ■■■■ ■■■■■, ■■ ■■■■ ■■■■ ■■■■■■■ ■■ ■■■ ■■■",
+te: "■■■■■■ ■■■■■■■■ ■■■■. ■■■ ■■ ■■■■■ ■■■■■ ■■■■■ ■■■■■■■■.",
+
+author: "Dalai Lama"
+},
+{
+en: "Today is a gift. That is why it is called the present.",
+ta: "■■■■■ ■■■ ■■■■■. ■■■■■■■■■■ ■■■ '■■■■■■■■■■' ■■■■■ ■■■■■■■■■■■■■■.",
+hi: "■■ ■■ ■■■■■ ■■ — ■■■■■■ ■■■ '■■■■■■■' ■■■■ ■■■■",
+te: "■■■■■ ■■ ■■■■■■. ■■■■■■ ■■■■■■ '■■■■■■■■■' ■■■ ■■■■■■■■■■.",
+author: "Alice Morse Earle"
+},
+{
+en: "Keep going. Everything you need will come to you at the perfect time.",
+ta: "■■■■■■■■■ ■■■■■■■■■■■. ■■■■■■■■■■ ■■■■■■■ ■■■■■■■ ■■■■■■ ■■■■■■■■■ ■■■■■.",
+hi: "■■■ ■■■■■ ■■■■■ ■■ ■■■■■ ■■ ■■■ ■■■■ ■■ ■■■■■■■",
+te: "■■■■■■■ ■■■■■■. ■■■■ ■■■■■■■■■■■ ■■■■ ■■■■■■ ■■■■■■■■.",
+author: "Unknown"
+}
+],
+motivated: [
+{
+en: "The secret of getting ahead is getting started.",
+ta: "■■■■■■■■■■■■ ■■■■■■■■ — ■■■■■■■■■■■■■■.",
+hi: "■■■ ■■■■■ ■■ ■■■ ■■ ■■■■■■ ■■■■ ■■■",
+te: "■■■■■■■ ■■■■■■■■■ ■■■■■■ ■■■■■■■■■■■■■.",
+author: "Mark Twain"
+},
+{
+en: "You are capable of more than you know. Now go prove it.",
+ta: "■■■■■■■■■■■■ ■■■■■■■■■ ■■■ ■■■■■■■ ■■■■■■ ■■■■■■■■■■■■■■■. ■■■■■■■ ■■■■■■■■■■■■■.",
+hi: "■■ ■■■■■ ■■■■■ ■■■ ■■■■ ■■■■ ■■■■■■■ ■■ ■■■■ ■■■■ ■■ ■■■ ■■■■■ ■■■■",
+te: "■■■■ ■■■■■■■■■■■■■■■ ■■■■■■ ■■■■■ ■■■■■■■■■ ■■■■ ■■■■. ■■■■■■■ ■■■■■■■■■■■.",
+author: "Unknown"
+},
+{
+en: "Act as if what you do makes a difference. Because it does.",
+ta: "■■■■■■■ ■■■■■■■ ■■■■■■■ ■■■■■■■■■■■■■■ ■■■■■■■■■■■■■■■■■. ■■■■■■■ ■■■ ■■■■■■■■■
+■■■■■■■■■■■■■■■.",
+hi: "■■■ ■■■ ■■■■ ■■■■ ■■■■ ■■■ ■■■■ ■■■■■ ■■■ ■■■■■■■ ■■■■■ ■■■",
+te: "■■■■ ■■■■■■ ■■■■ ■■■■■■■■■■ ■■■■■■■ ■■■■■■■■■■■■. ■■■■■■■■ ■■■ ■■■■■■ ■■■■■■■■■.",
+author: "William James"
+},
+{
+en: "The harder you work for something, the greater you will feel when you achieve it.",
+ta: "■■■■■■■■■■ ■■■■■■■ ■■■■■■■ ■■■■■■■■■■■■■■■■■■, ■■■ ■■■■■■■■■■■ ■■■■■■■ ■■■■■
+■■■■■■■■ ■■■■■■■■■■.",
+hi: "■■■■■ ■■■■■ ■■■■■, ■■■ ■■■■■ ■■■■ ■■ ■■■■ ■■■■■■■ ■■■■ ■■■■■■■",
+te: "■■■■ ■■■■ ■■■■ ■■■ ■■■■■■■■■■, ■■■■■■ ■■■■■■■■■■■■■■ ■■■ ■■■■■■■ ■■■■■■■■■■■■.",
+author: "Unknown"
+}
+]
+};
+/* ============================================
+MOOD DISPLAY NAMES & EMOJI
+============================================ */
+const MOOD_INFO = {
+sad: { label: "Feeling Sad", emoji: "■", color: "#60a5fa" },
+angry: { label: "Feeling Angry", emoji: "■", color: "#f87171" },
+tired: { label: "Feeling Tired", emoji: "■", color: "#a78bfa" },
+happy: { label: "Feeling Happy", emoji: "■", color: "#34d399" },
+motivated: { label: "Feeling Motivated", emoji: "■", color: "#fb923c" }
+};
+/* ============================================
+APP STATE — all the app's memory lives here
+============================================ */
+let userName = ""; // user's name
+let userProf = ""; // user's profession
+let currentMood = null; // e.g. "sad"
+let currentQuote = null; // the current quote object
+let currentLang = "en"; // active language
+let likeCount = 0;
+
+let dislikeCount = 0;
+let userReaction = null; // "like" | "dislike" | null
+let usedQuotes = {}; // track which quotes shown per mood
+/* ============================================
+STREAK — uses localStorage to remember last visit date
+Each new calendar day the user opens the app counts as +1
+============================================ */
+function calcStreak() {
+const today = new Date().toDateString(); // e.g. "Sat Mar 21 2026"
+const lastVisit = localStorage.getItem('ml_last_visit');
+let streak = parseInt(localStorage.getItem('ml_streak') || '0', 10);
+if (!lastVisit) {
+// Very first time ever
+streak = 1;
+} else if (lastVisit === today) {
+// Same day — streak stays, don't increment
+// streak is already correct in localStorage
+} else {
+// Check if yesterday
+const yesterday = new Date();
+yesterday.setDate(yesterday.getDate() - 1);
+if (lastVisit === yesterday.toDateString()) {
+streak += 1; // consecutive day → increment
+} else {
+streak = 1; // missed a day → reset
+}
+}
+localStorage.setItem('ml_last_visit', today);
+localStorage.setItem('ml_streak', streak);
+return streak;
+}
+/* ============================================
+SCREEN NAVIGATION
+============================================ */
+function showScreen(id) {
+// Hide all screens
+document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+// Show the chosen one
+document.getElementById(id).classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+/* Landing → Onboarding */
+function goToOnboarding() {
+showScreen('onboarding');
+}
+/* Onboarding → Main App */
+function goToApp() {
+const nameVal = document.getElementById('nameInput').value.trim();
+const profVal = document.getElementById('profSelect').value;
+// Simple validation
+let valid = true;
+if (!nameVal) {
+document.getElementById('nameError').style.display = 'block';
+valid = false;
+} else {
+document.getElementById('nameError').style.display = 'none';
+}
+if (!profVal) {
+document.getElementById('profError').style.display = 'block';
+valid = false;
+} else {
+document.getElementById('profError').style.display = 'none';
+}
+if (!valid) return;
+// Save user info
+userName = nameVal;
+userProf = profVal;
+// Update main app UI with user's name
+document.getElementById('topbarName').textContent = userName;
+
+document.getElementById('greetingName').textContent = "Welcome, " + userName + "! ■";
+document.getElementById('greetingSub').textContent =
+"You're a " + userProf + ". Pick your mood and get your surprise quote.";
+// Calculate and display streak
+const streak = calcStreak();
+document.getElementById('streakCount').textContent = streak;
+// Go to main app
+showScreen('mainapp');
+}
+/* ============================================
+MOOD SELECTION
+============================================ */
+function selectMood(mood) {
+currentMood = mood;
+// Remove 'selected' from all mood buttons
+document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+// Add 'selected' to the clicked one
+document.getElementById('mood-' + mood).classList.add('selected');
+// Reset language to English
+currentLang = 'en';
+document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+document.querySelectorAll('.lang-tab')[0].classList.add('active');
+// Reset reactions
+likeCount = 0;
+dislikeCount = 0;
+userReaction = null;
+updateReactionUI();
+// Pick a random quote for this mood
+pickRandomQuote();
+// Show the quote section
+document.getElementById('quoteSection').style.display = 'block';
+// Scroll down so user can see the quote
+setTimeout(() => {
+document.getElementById('quoteSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 100);
+}
+/* ============================================
+PICK A RANDOM QUOTE
+Tries not to repeat the same quote twice in a row
+============================================ */
+function pickRandomQuote() {
+const pool = QUOTES[currentMood];
+// If we've used all quotes, reset the tracker
+if (!usedQuotes[currentMood]) usedQuotes[currentMood] = [];
+if (usedQuotes[currentMood].length >= pool.length) {
+usedQuotes[currentMood] = [];
+}
+// Get indexes that haven't been used recently
+const available = pool
+.map((_, i) => i)
+.filter(i => !usedQuotes[currentMood].includes(i));
+// Pick a random one from available
+const idx = available[Math.floor(Math.random() * available.length)];
+usedQuotes[currentMood].push(idx);
+currentQuote = pool[idx];
+// Display the quote
+displayQuote();
+}
+/* ============================================
+DISPLAY CURRENT QUOTE IN CURRENT LANGUAGE
+============================================ */
+function displayQuote() {
+if (!currentQuote) return;
+const info = MOOD_INFO[currentMood];
+// Set text
+document.getElementById('quoteText').textContent = currentQuote[currentLang];
+document.getElementById('quoteAuthor').textContent = '— ' + currentQuote.author;
+document.getElementById('quoteMoodTag').textContent = info.emoji + ' ' + info.label;
+// Change the colour strip at top of card
+
+document.querySelector('.quote-mood-strip').style.background =
+'linear-gradient(90deg, ' + info.color + ', #ffd166)';
+// Replay fade-in animation
+const card = document.getElementById('quoteCard');
+card.style.animation = 'none';
+void card.offsetWidth; // force reflow
+card.style.animation = 'fadeIn 0.5s ease both';
+}
+/* ============================================
+LANGUAGE SWITCH
+============================================ */
+function switchLang(langCode, btnEl) {
+currentLang = langCode;
+// Update active tab style
+document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+btnEl.classList.add('active');
+// Re-display quote in new language (smooth animation)
+displayQuote();
+}
+/* ============================================
+NEW QUOTE BUTTON
+============================================ */
+function newQuote() {
+// Reset reactions
+likeCount = 0;
+dislikeCount = 0;
+userReaction = null;
+updateReactionUI();
+// Pick new quote
+pickRandomQuote();
+}
+/* ============================================
+LIKE / DISLIKE
+============================================ */
+function react(type) {
+// If clicking the same reaction again, undo it
+if (userReaction === type) {
+userReaction = null;
+if (type === 'like') likeCount = Math.max(0, likeCount - 1);
+if (type === 'dislike') dislikeCount = Math.max(0, dislikeCount - 1);
+} else {
+// Undo previous reaction first
+if (userReaction === 'like') likeCount = Math.max(0, likeCount - 1);
+if (userReaction === 'dislike') dislikeCount = Math.max(0, dislikeCount - 1);
+// Apply new reaction
+userReaction = type;
+if (type === 'like') likeCount++;
+if (type === 'dislike') dislikeCount++;
+}
+updateReactionUI();
+// Little bounce animation
+const btn = document.getElementById(type === 'like' ? 'likeBtn' : 'dislikeBtn');
+btn.classList.add('pulse');
+setTimeout(() => btn.classList.remove('pulse'), 300);
+}
+function updateReactionUI() {
+const likeBtn = document.getElementById('likeBtn');
+const dislikeBtn = document.getElementById('dislikeBtn');
+// Reset styles
+likeBtn.classList.remove('liked');
+dislikeBtn.classList.remove('disliked');
+// Apply active style
+if (userReaction === 'like') likeBtn.classList.add('liked');
+if (userReaction === 'dislike') dislikeBtn.classList.add('disliked');
+// Update counters
+document.getElementById('likeCount').textContent = likeCount;
+document.getElementById('dislikeCount').textContent = dislikeCount;
+}
+/* ============================================
+
+PRESS ENTER ON NAME FIELD → move to select
+============================================ */
+document.getElementById('nameInput').addEventListener('keydown', function(e) {
+if (e.key === 'Enter') document.getElementById('profSelect').focus();
+});
+</script>
+</body>
+</html>
